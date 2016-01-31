@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>SocialLadder - VCard</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="starter-template.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <!-- Bootstrap FileStyle -->
+    <script src="filestyle.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+    
+    <!-- Download.js -->
+    <script src="http://danml.com/js/download2.js"></script>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">SocialLadder</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="qrPage.html">QR Code</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="Scan.html">Scan</a></li>
+            <li><a href="scoreboard.html">Scoreboard</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+  <script>
+    var ref = new Firebase("https://socialladder.firebaseio.com");
+            
+    function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    
+    function makeVCard(firstName, lastName, email, phoneNumber){
+      var card = "BEGIN:VCARD";
+      card +=   "VERSION:3.0";
+      card +=   "N:"+lastName+";"+firstName+";;;";
+      card +=   "FN:"+firstName + " " + lastName;
+      card +=   "ORG:Example.com Inc.;";
+      card +=   "TITLE:Imaginary test person";
+      card +=   "EMAIL"+email;
+      card +=   "TEL;CELL;VOICE:"+phoneNumber;
+      card +=   "X-ABUID:5AD380FD-B2DE-4261-BA99-DE1D1DB52FBE\:ABPerson";
+      card +=   "END:VCARD";
+      return card;
+      
+
+    }
+  
+    $(function() {
+      var uid = getParameterByName('uid');
+      var childData=null;
+       ref.once("value", function(snapshot){
+          snapshot.forEach(function(childSnapshot) {
+            if(childSnapshot.val().uid==uid){
+               childData = childSnapshot.val();
+            }
+          alert("you have met "+ childData.first_name+" "+childData.last_Name);
+          alert("hold number to add to contacts: "+ childData_.phone)
+          
+        
+    });
+    });
+    });
+  </script>
+    <br /><br />
+    <div align="center">
+    <h2>Tweet this interaction!</h2><br />
+    <a href="https://twitter.com/intent/tweet?button_hashtag=qrtagger" class="twitter-hashtag-button" data-size="large">Tweet this interaction! #qrtagger</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

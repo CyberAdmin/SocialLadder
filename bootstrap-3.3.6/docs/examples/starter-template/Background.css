@@ -1,0 +1,22 @@
+
+html,body{
+    overflow: hidden;
+}
+
+img.bg{
+    min-height:100%;
+    max-width:100%;
+    height:auto;
+    width:auto;
+    position:absolute;
+    top:-50%; bottom:-50%;
+    left:-50%; right:-50%;
+    margin:auto;
+    z-index:-5;
+    opacity: 0.65;
+    filter: alpha(opacity=55);
+}
+
+img.bg2{
+    background-image: url("img_tree.gif")
+}
