@@ -96,18 +96,16 @@
           snapshot.forEach(function(childSnapshot) {
             if(childSnapshot.val().uid==uid){
                childData = childSnapshot.val();
+               $('#interaction').html("<h1>Tweet this interaction with</h1><br /><h2>"+childData.first_name+" "+childData.last_name+".</h2><br />You might also want to hold onto their phone number <b><a href='tel:"+childData.phone_number+"'>"+childData.phone_number+"</b>.<br /><br />");
             }
-          alert("you have met "+ childData.first_name+" "+childData.last_Name);
-          alert("hold number to add to contacts: "+ childData_.phone)
-          
-        
     });
+         
     });
     });
   </script>
     <br /><br />
     <div align="center">
-    <h2>Tweet this interaction!</h2><br />
+    <div id="interaction" name="interaction"></div>
     <a href="https://twitter.com/intent/tweet?button_hashtag=qrtagger" class="twitter-hashtag-button" data-size="large">Tweet this interaction! #qrtagger</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     </div>
